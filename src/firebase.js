@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app"; // to initialize the app
-import { getFirestore } from "firebase/firestore/lite"; // to initialize the db
+import { getFirestore } from "firebase/firestore"; // to initialize the db
 import { getAuth } from "firebase/auth"; // to initialize the authentication
 
 const firebaseConfig = {

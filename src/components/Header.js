@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./Header.css";
 import SearchIcon from "@mui/icons-material/Search";
 import ShoppingBasketIcon from "@mui/icons-material/ShoppingBasket";
@@ -22,6 +22,11 @@ function Header() {
     }
   };
 
+  const firstWords = (str) => {
+    const firstSpaceIndex = str.indexOf(" ");
+    return str.substring(0, firstSpaceIndex);
+  };
+
   return (
     <div className="header">
       {/* Logo */}
@@ -40,17 +45,21 @@ function Header() {
       {/* Navbar */}
       <div className="header__nav">
         <div className="header__option" onClick={handleAuth}>
-          <span className="header__optionLineOne">Hello Guest</span>
+          <span className="header__optionLineOne">
+            Hello {!user ? "Guest" : firstWords(user?.displayName)}
+          </span>
           <Link to="/login">
             <span className="header__optionLineTwo">
               {user ? "Sign Out" : "Sign In"}
             </span>
           </Link>
         </div>
-        <div className="header__option">
-          <span className="header__optionLineOne">Returns</span>
-          <span className="header__optionLineTwo">Orders</span>
-        </div>
+        <Link to="/orders">
+          <div className="header__option">
+            <span className="header__optionLineOne">Returns</span>
+            <span className="header__optionLineTwo">Orders</span>
+          </div>
+        </Link>
         <div className="header__option">
           <span className="header__optionLineOne">Your</span>
           <span className="header__optionLineTwo">Prime</span>

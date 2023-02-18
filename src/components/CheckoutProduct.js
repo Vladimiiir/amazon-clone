@@ -1,9 +1,12 @@
 import React from "react";
 import { useStateValue } from "../StateProvider";
 import "./CheckoutProduct.css";
+import { Link, useNavigate } from "react-router-dom";
 
 function CheckoutProduct({ id, image, price, title, rating }) {
   const [{ basket }, dispatch] = useStateValue();
+  const navigate = useNavigate();
+
   const removeFromBasket = () => {
     // remove items from basket
     dispatch({

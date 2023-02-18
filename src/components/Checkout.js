@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./Checkout.css";
 import Subtotal from "./Subtotal";
 import CheckoutProduct from "./CheckoutProduct";
@@ -7,8 +7,14 @@ import { getBasketTotal } from "../reducer";
 
 function Checkout() {
   const [{ basket, user }, dispatch] = useStateValue();
+
   const deselectAllItems = () => {
     <CheckoutProduct />;
+  };
+
+  const firstWords = (str) => {
+    const firstSpaceIndex = str.indexOf(" ");
+    return str.substring(0, firstSpaceIndex);
   };
 
   return (
@@ -19,7 +25,7 @@ function Checkout() {
           src="https://images-eu.ssl-images-amazon.com/images/G/31/prime/Shopping_Feb22/1500x250PCbanneFeb22.jpg"
         /> */}
         <div>
-          <h1>Hello, {user?.email}</h1>
+          <h1>Hello, {firstWords(user?.displayName)}</h1>
           <h2 className="checkout__title">Shopping Cart</h2>
           <h4 className="checkout__deselect" onClick={deselectAllItems}>
             Deselect all items

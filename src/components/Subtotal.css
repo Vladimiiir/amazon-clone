@@ -20,6 +20,22 @@
 }
 
 .subtotal > button {
+  background: #ffd814;
+  border-radius: 5px;
+  width: 100%;
+  height: 30px;
+  border: 1px solid;
+  margin-top: 10px;
+  border-color: #fcd200;
+  color: #111;
+  transition: background-color 0.5s ease;
+}
+
+.subtotal > button:hover {
+  background-color: #d6b000;
+}
+
+.button {
   background: #f0c14b;
   border-radius: 5px;
   width: 100%;
@@ -28,4 +44,5 @@
   margin-top: 10px;
   border-color: #a88734 #9c7e31 #846a29;
   color: #111;
+  cursor: pointer;
 }

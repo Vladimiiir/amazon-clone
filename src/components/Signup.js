@@ -1,12 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, createContext, useContext } from "react";
 import "./Signup.css";
 import { Link, useNavigate } from "react-router-dom";
 import { auth } from "../firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
+import { updateProfile } from "firebase/auth";
 
 function Signup() {
   const navigate = useNavigate();
-  const [name, setName] = useState("");
+  const [displayName, setDisplayName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [repassword, setRepassword] = useState("");
@@ -18,7 +19,9 @@ function Signup() {
       .then((userCredential) => {
         // Signed in
         const user = userCredential.user;
-        console.log(user);
+        updateProfile(auth.currentUser, {
+          displayName: displayName,
+        });
         //...
         if (user) {
           navigate("/");
@@ -40,12 +43,14 @@ function Signup() {
         <h1>Create account</h1>
         <form>
           <h5>Your name</h5>
+
           <input
             placeholder="First and last name"
             type="text"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
+            value={displayName}
+            onChange={(e) => setDisplayName(e.target.value)}
           />
+
           <h5>Mobile number or email</h5>
           <input
             type="text"
